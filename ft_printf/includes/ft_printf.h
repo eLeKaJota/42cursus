@@ -26,6 +26,7 @@ typedef struct s_flags
 	int		zero;
 	int		minus;
 	int		dot;
+	int		num;
 	char	type;
 }		t_flags;
 

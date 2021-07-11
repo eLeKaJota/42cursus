@@ -9,6 +9,7 @@ t_flags	ft_init_flags(void)
 	flags.zero = 0;
 	flags.minus = 0;
 	flags.dot = 0;
+	flags.num = 0;
 	return (flags);
 }
 
@@ -38,28 +39,25 @@ t_flags	ft_handle_flags(char *fl, t_flags flags)
 	int	i;
 
 	i = -1;
+	flags.type = fl[ft_strlen(fl) - 1];
 	while (!ft_check_type(fl[++i]))
 	{
-		//printf("-%c-",fl[0]);
 		if (fl[i] == '0')
 			flags.zero = 1;
-		else if (fl[i] == '-')
+		if (fl[i] == '-')
 			flags.minus = 1;
-		while (ft_isdigit(fl[i]))
+		while (ft_isdigit(fl[i]) && fl[i] != '0')
 		{
-			if (!flags.width) {
+			if (!flags.width)
 				flags.width = ft_get_width(&fl[i]);
-			}
 			i++;
 		}
 		if (fl[i] == '.')
 		{
-			i++;
-			while (ft_isdigit(fl[i]))
+			while (ft_isdigit(fl[++i]))
 			{
 				if (flags.prec < 0)
 					flags.prec = ft_get_width(&fl[i]);
-				i++;
 			}
 		}
 	}
