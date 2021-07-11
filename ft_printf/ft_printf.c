@@ -35,7 +35,6 @@ int	ft_handle_percent(va_list args, char *str)
 	fl = ft_flags_info(str);
 	arg = ft_get_arg(args, fl);
 	length += ft_print_arg(arg, fl);
-	//length += ft_strlen(arg) - (ft_strlen(fl) + 1);
 	if (!arg[0] && fl[ft_strlen(fl) - 1] == 'c')
 	{
 		ft_putchar('\0');

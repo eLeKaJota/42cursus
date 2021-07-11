@@ -35,7 +35,7 @@ int	ft_print_arg(char *arg, char *fl)
 	flags = ft_init_flags();
 	flags = ft_handle_flags(fl, flags);
 	if (flags.prec > -1)
-		arg = ft_substr(arg, 0, flags.prec);
+        arg[flags.prec] = 0;
 	if (!flags.minus)
 		ft_print_width(flags, arg);
 	ft_putstr(arg);

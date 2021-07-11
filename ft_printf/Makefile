@@ -20,7 +20,7 @@ OBJS = $(SRCS:.c=.o)
 $(NAME): $(OBJS)
 	$(MAKE) bonus -C ./libft
 	cp $(LIBFT) $(NAME)
-	$(CC) $(FLAGS) -I. $(SRCS)
+	$(CC) $(FLAGS) $(SANI) -I. $(SRCS)
 	ar -rcs $(NAME) $(OBJS)
 
 all : $(NAME)
