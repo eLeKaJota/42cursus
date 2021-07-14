@@ -6,7 +6,7 @@
 /*   By: ccifuent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 16:34:16 by ccifuent          #+#    #+#             */
-/*   Updated: 2021/07/09 16:54:23 by                  ###   ########.fr       */
+/*   Updated: 2021/07/14 17:47:50 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_flags
 int		ft_printf(const char *cpy, ...);
 void	ft_putchar(int c);
 void	ft_putstr(char *str);
-int	ft_print_arg(char *arg, char *fl);
+int		ft_print_arg(char *arg, char *fl);
 char	*ft_alloc_char(char c);
 int		ft_count_hex(uintptr_t n);
 char	*ft_alloc_HEX(uintptr_t n);
@@ -45,6 +45,12 @@ char	ft_check_type(char c);
 t_flags	ft_init_flags(void);
 t_flags	ft_handle_flags(char *fl, t_flags flags);
 void	ft_print_width(t_flags flags, char *arg);
+void	ft_print_zeros(t_flags flags, char *arg);
 int		ft_get_width(char *str);
+t_flags	ft_check_print_num(t_flags flags, char *arg);
+t_flags	ft_num_prec(char *arg, t_flags flags);
+t_flags	ft_num_zero(char *arg, t_flags flags);
+t_flags	ft_print_num(char *arg, t_flags flags);
+t_flags	ft_isnum(char *arg, t_flags flags);
 
 #endif

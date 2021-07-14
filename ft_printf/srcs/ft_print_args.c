@@ -20,10 +20,12 @@ void	ft_putstr(char *str)
 void	ft_print_zeros(t_flags flags, char *arg)
 {
 	int	r;
-	int i;
+	int	i;
 
 	i = -1;
 	r = flags.zero - ft_strlen(arg);
+	if (flags.zero && flags.prec == -1 && flags.minus)
+		r = 0;
 	while (++i < r)
 		ft_putchar('0');
 }
@@ -31,53 +33,56 @@ void	ft_print_zeros(t_flags flags, char *arg)
 void	ft_print_width(t_flags flags, char *arg)
 {
 	int	r;
-	int i;
+	int	i;
 
 	i = -1;
+	flags = ft_check_print_num(flags, arg);
 	r = flags.width - ft_strlen(arg);
+	if (!arg[0] && flags.width && flags.type == 'c')
+		r--;
+	if (flags.num && flags.zero && flags.prec == -2 && flags.minus)
+		r--;
 	while (++i < r)
 		ft_putchar(' ');
 }
 
-t_flags	ft_print_num(char *arg, t_flags flags)
+t_flags	ft_print_arg_char(t_flags flags, char *arg)
 {
-	if (flags.prec >= 0 )
-	{
-		flags.zero = flags.prec;
-		flags.width -= (flags.zero - ft_strlen(arg));
-		if(!flags.minus)
+	if (flags.type == 'c') {
+		if (flags.prec > -1)
+			arg[flags.prec] = 0;
+		if (!flags.minus && !flags.zero)
 			ft_print_width(flags, arg);
-		ft_print_zeros(flags, arg);
+		if (!arg[0] && flags.type == 'c') {
+			if (!flags.width)
+				flags.width++;
+			ft_putchar('\0');
+		} else
+			ft_putstr(arg);
+		if (flags.minus)
+			ft_print_width(flags, arg);
 	}
-    else if (flags.zero)
-	{
-		flags.zero = flags.width;
-		ft_print_zeros(flags, arg);
-	}
-    return (flags);
+	return (flags);
 }
 
 int	ft_print_arg(char *arg, char *fl)
 {
-	t_flags flags;
+	t_flags	flags;
 
 	flags = ft_init_flags();
 	flags = ft_handle_flags(fl, flags);
-	if (flags.type == 'd' || flags.type == 'i' || flags.type == 'u')
-	{
-		flags.num = 1;
-		flags = ft_print_num(arg, flags);
-	}
-	if (flags.prec > -1 && !flags.num)
+	flags = ft_print_arg_char(flags, arg);
+	flags = ft_isnum(arg, flags);
+	/*if (flags.prec > -1 && !flags.num)
 		arg[flags.prec] = 0;
 	if (!flags.minus && !flags.zero && !flags.num)
 		ft_print_width(flags, arg);
 	ft_putstr(arg);
 	if (flags.minus && !flags.num)
-		ft_print_width(flags, arg);
-	if (flags.minus && flags.num && flags.prec >= 0)
-		ft_print_width(flags, arg);
-	if (flags.width <= ft_strlen(arg))
+		ft_print_width(flags, arg);*/
+	if (flags.prec > flags.width && flags.prec > ft_strlen(arg))
+		return (flags.prec - (ft_strlen(fl) + 1));
+	if (flags.width < ft_strlen(arg))
 		return (ft_strlen(arg) - (ft_strlen(fl) + 1));
 	else
 		return (flags.width - (ft_strlen(fl) + 1));

@@ -17,7 +17,7 @@ int	ft_get_width(char *str)
 {
 	int		i;
 	char	*n;
-	int 	res;
+	int		res;
 
 	i = 0;
 	while (ft_isdigit(str[i]))
@@ -54,11 +54,10 @@ t_flags	ft_handle_flags(char *fl, t_flags flags)
 		}
 		if (fl[i] == '.')
 		{
+			flags.prec = -2;
 			while (ft_isdigit(fl[++i]))
-			{
 				if (flags.prec < 0)
 					flags.prec = ft_get_width(&fl[i]);
-			}
 		}
 	}
 	return (flags);
