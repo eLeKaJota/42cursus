@@ -11,7 +11,7 @@ char	*ft_get_arg(va_list args, char *fl)
 	if (type == 'd' || type == 'i')
 		arg = ft_itoa(va_arg(args, int));
 	if (type == 'u')
-		arg = ft_itoa(va_arg(args, unsigned int));
+		arg = ft_itoa_u(va_arg(args, unsigned int));
 	if (type == 's')
 		arg = ft_strdup(va_arg(args, char *));
 	if (type == '%')

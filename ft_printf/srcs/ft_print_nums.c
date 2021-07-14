@@ -28,7 +28,7 @@ t_flags	ft_num_prec(char *arg, t_flags flags)
 	flags.width -= (flags.zero - ft_strlen(arg));
 	if (!flags.minus)
 		ft_print_width(flags, arg);
-	if (ft_atoi(arg) < 0 && flags.zero >= ft_strlen(arg))
+	if (ft_atoi(arg) < 0 && flags.zero >= ft_strlen(arg) && flags.type != 'u')
 	{
 		arg[0] = '0';
 		ft_putchar('-');
@@ -43,7 +43,7 @@ t_flags	ft_num_zero(char *arg, t_flags flags)
 	flags.zero = flags.width;
 	if (flags.minus)
 		flags.zero = 0;
-	if (ft_atoi(arg) < 0 && flags.zero >= ft_strlen(arg))
+	if (ft_atoi(arg) < 0 && flags.zero >= ft_strlen(arg) && flags.type != 'u')
 	{
 		arg[0] = '0';
 		ft_putchar('-');

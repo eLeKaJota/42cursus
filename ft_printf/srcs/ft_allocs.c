@@ -69,7 +69,10 @@ char	*ft_alloc_ptr(uintptr_t n)
 	char	*pre;
 	char	*hex;
 
-	hex = ft_alloc_hex(n);
+	if (!n)
+		hex = ft_strdup("0");
+	else
+		hex = ft_alloc_hex(n);
 	pre = ft_strjoin("0x", hex);
 	free(hex);
 	return (pre);

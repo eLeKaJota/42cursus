@@ -5,7 +5,7 @@ N_TEMP = temp.a
 NAME = libftprintf.a
 
 SRCS =	ft_printf.c srcs/ft_print_args.c srcs/ft_allocs.c srcs/ft_get_infos.c \
-		srcs/ft_flags.c srcs/ft_print_nums.c
+		srcs/ft_flags.c srcs/ft_print_nums.c srcs/ft_itoa_u.c
 
 CC = gcc
 

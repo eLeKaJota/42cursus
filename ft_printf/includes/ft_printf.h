@@ -6,7 +6,7 @@
 /*   By: ccifuent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 16:34:16 by ccifuent          #+#    #+#             */
-/*   Updated: 2021/07/14 17:47:50 by                  ###   ########.fr       */
+/*   Updated: 2021/07/14 17:51:26 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ t_flags	ft_num_prec(char *arg, t_flags flags);
 t_flags	ft_num_zero(char *arg, t_flags flags);
 t_flags	ft_print_num(char *arg, t_flags flags);
 t_flags	ft_isnum(char *arg, t_flags flags);
+char	*ft_itoa_u(unsigned int n);
 
 #endif

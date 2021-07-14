@@ -65,6 +65,30 @@ t_flags	ft_print_arg_char(t_flags flags, char *arg)
 	return (flags);
 }
 
+t_flags	ft_print_arg_str(t_flags flags, char *arg)
+{
+	if (flags.type == 's' || flags.type == 'p')
+	{
+		if (flags.prec == -2)
+			flags.prec = 0;
+		if (flags.prec > ft_strlen(arg))
+			flags.prec = ft_strlen(arg);
+		if (flags.prec > -1)
+			arg[flags.prec] = 0;
+		if (!flags.minus && !flags.zero)
+			ft_print_width(flags, arg);
+		if (!arg[0] && flags.type == 'c') {
+			if (!flags.width)
+				flags.width++;
+			ft_putchar('\0');
+		} else
+			ft_putstr(arg);
+		if (flags.minus)
+			ft_print_width(flags, arg);
+	}
+	return (flags);
+}
+
 int	ft_print_arg(char *arg, char *fl)
 {
 	t_flags	flags;
@@ -73,6 +97,7 @@ int	ft_print_arg(char *arg, char *fl)
 	flags = ft_handle_flags(fl, flags);
 	flags = ft_print_arg_char(flags, arg);
 	flags = ft_isnum(arg, flags);
+	flags = ft_print_arg_str(flags, arg);
 	/*if (flags.prec > -1 && !flags.num)
 		arg[flags.prec] = 0;
 	if (!flags.minus && !flags.zero && !flags.num)
