@@ -18,8 +18,10 @@ char	*ft_get_arg(va_list args, char *fl)
 		arg = ft_strdup("%");
 	if (type == 'c')
 		arg = ft_alloc_char(va_arg(args, int));
-	if (type == 'x' || type == 'X')
+	if (type == 'x')
 		arg = ft_alloc_hex(va_arg(args, unsigned int));
+	if (type == 'X')
+		arg = ft_alloc_upperx(va_arg(args, unsigned int));
 	if (type == 'p')
 		arg = ft_alloc_ptr(va_arg(args, uintptr_t));
 	return (arg);
@@ -62,7 +64,6 @@ int	ft_printf(const char *cpy, ...)
 			ft_putchar(str[i]);
 	}
 	va_end(args);
-
 	i = ft_strlen(cpy) + length;
 	free(str);
 	return (i);

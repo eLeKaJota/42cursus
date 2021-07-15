@@ -6,7 +6,7 @@
 /*   By: ccifuent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 16:34:16 by ccifuent          #+#    #+#             */
-/*   Updated: 2021/07/14 17:51:26 by                  ###   ########.fr       */
+/*   Updated: 2021/07/15 17:08:51 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_putstr(char *str);
 int		ft_print_arg(char *arg, char *fl);
 char	*ft_alloc_char(char c);
 int		ft_count_hex(uintptr_t n);
-char	*ft_alloc_HEX(uintptr_t n);
+char	*ft_alloc_upperx(uintptr_t n);
 char	*ft_alloc_hex(uintptr_t n);
 char	*ft_alloc_ptr(uintptr_t n);
 void	ft_clean(char *fl, char *arg);
@@ -53,5 +53,9 @@ t_flags	ft_num_zero(char *arg, t_flags flags);
 t_flags	ft_print_num(char *arg, t_flags flags);
 t_flags	ft_isnum(char *arg, t_flags flags);
 char	*ft_itoa_u(unsigned int n);
+t_flags	ft_print_arg_char(t_flags flags, char *arg);
+t_flags	ft_print_arg_str(t_flags flags, char *arg);
+t_flags	ft_print_num(char *arg, t_flags flags);
+int	ft_all_digits(char *arg);
 
 #endif

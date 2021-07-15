@@ -10,12 +10,14 @@ char	*ft_alloc_char(char c)
 	return (ptr);
 }
 
-char	*ft_alloc_HEX(uintptr_t n)
+char	*ft_alloc_upperx(uintptr_t n)
 {
 	char	*hex;
 	int		temp;
 	int		i;
 
+	if (!n)
+		return (ft_strdup("0"));
 	i = ft_count_hex(n) - 1;
 	hex = malloc((i + 2) * sizeof(char));
 	ft_bzero(hex, i + 2);
@@ -43,6 +45,8 @@ char	*ft_alloc_hex(uintptr_t n)
 	int		temp;
 	int		i;
 
+	if (!n)
+		return (ft_strdup("0"));
 	i = ft_count_hex(n) - 1;
 	hex = malloc((i + 2) * sizeof(char));
 	ft_bzero(hex, i + 2);
