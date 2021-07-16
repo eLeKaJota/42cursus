@@ -1,0 +1,10 @@
+pft/
+printfTester/
+42TESTERS-PRINTF/
+a.out
+*.o
+libftprintf.out
+libft/*.o
+*.a
+libft/*.a
+srcs/*.o

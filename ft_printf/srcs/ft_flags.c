@@ -8,6 +8,8 @@ t_flags	ft_init_flags(void)
 	flags.prec = -1;
 	flags.zero = 0;
 	flags.minus = 0;
+	flags.plus = 0;
+	flags.sharp = 0;
 	flags.dot = 0;
 	flags.num = 0;
 	return (flags);
@@ -42,6 +44,10 @@ t_flags	ft_handle_flags(char *fl, t_flags flags)
 	flags.type = fl[ft_strlen(fl) - 1];
 	while (!ft_check_type(fl[++i]))
 	{
+		if (fl[i] == '+')
+			flags.plus = 1;
+		if (fl[i] == '#')
+			flags.sharp = 1;
 		if (fl[i] == '0')
 			flags.zero = 1;
 		if (fl[i] == '-')

@@ -1,9 +1,19 @@
 #include "../includes/ft_printf.h"
 
+void	ft_percent_zero(t_flags flags, char *arg)
+{
+	if (flags.type == '%' && flags.zero)
+	{
+		flags.zero = flags.width;
+		ft_print_zeros(flags, arg);
+	}
+}
+
 t_flags	ft_print_arg_char(t_flags flags, char *arg)
 {
 	if (flags.type == 'c' || flags.type == '%')
 	{
+		ft_percent_zero(flags, arg);
 		if (flags.prec > -1)
 			arg[flags.prec] = 0;
 		if (!flags.minus && !flags.zero)
@@ -59,10 +69,14 @@ t_flags	ft_print_num(char *arg, t_flags flags)
 		flags = ft_num_zero(arg, flags);
 	else if (!flags.minus)
 		ft_print_width(flags, arg);
+	if (flags.plus && !flags.zero && ft_atoi(arg) >= 0)
+		ft_putchar('+');
 	ft_putstr(arg);
 	if (flags.minus)
 		ft_print_width(flags, arg);
 	if (flags.num && flags.prec != -1)
 		flags.width += (flags.zero - ft_strlen(arg));
+	if (flags.plus && flags.minus && flags.prec < 0)
+		flags.width++;
 	return (flags);
 }

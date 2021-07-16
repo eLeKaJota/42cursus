@@ -25,6 +25,8 @@ typedef struct s_flags
 	int		prec;
 	int		zero;
 	int		minus;
+	int		plus;
+	int		sharp;
 	int		dot;
 	int		num;
 	char	type;
@@ -56,6 +58,6 @@ char	*ft_itoa_u(unsigned int n);
 t_flags	ft_print_arg_char(t_flags flags, char *arg);
 t_flags	ft_print_arg_str(t_flags flags, char *arg);
 t_flags	ft_print_num(char *arg, t_flags flags);
-int	ft_all_digits(char *arg);
+int		ft_all_digits(char *arg);
 
 #endif

@@ -39,6 +39,10 @@ t_flags	ft_num_prec(char *arg, t_flags flags)
 		ft_putchar('-');
 		flags.prec++;
 	}
+	if (flags.plus && ft_atoi(arg) >= 0)
+	{
+		ft_putchar('+');
+	}
 	ft_print_zeros(flags, arg);
 	return (flags);
 }
@@ -48,11 +52,16 @@ t_flags	ft_num_zero(char *arg, t_flags flags)
 	flags.zero = flags.width;
 	if (flags.minus)
 		flags.zero = 0;
-	if (ft_atoi(arg) < 0 && flags.zero >= ft_strlen(arg) && flags.type != 'u')
+	if (ft_atoi(arg) < 0 && flags.zero > ft_strlen(arg) && flags.type != 'u')
 	{
 		arg[0] = '0';
 		ft_putchar('-');
 		flags.zero--;
+	}
+	if (flags.plus && flags.prec < 0 && ft_atoi(arg) >= 0)
+	{
+		if (!flags.minus)
+			ft_putchar('+');
 	}
 	ft_print_zeros(flags, arg);
 	return (flags);

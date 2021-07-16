@@ -21,6 +21,12 @@ $(NAME): $(OBJS)
 	$(CC) $(FLAGS) -I. $(SRCS)
 	ar -rcs $(NAME) $(OBJS)
 
+bonus: $(OBJS)
+	$(MAKE) bonus -C ./libft
+	cp $(LIBFT) $(NAME)
+	$(CC) $(FLAGS) -I. $(SRCS)
+	ar -rcs $(NAME) $(OBJS)
+
 all : $(NAME)
 
 clean :
