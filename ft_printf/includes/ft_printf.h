@@ -6,7 +6,7 @@
 /*   By: ccifuent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 16:34:16 by ccifuent          #+#    #+#             */
-/*   Updated: 2021/07/17 16:19:36 by                  ###   ########.fr       */
+/*   Updated: 2021/07/20 11:53:09 by ccifuent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <stdarg.h>
-# include <stdio.h>
 # include <stdint.h>
 
 typedef struct s_flags

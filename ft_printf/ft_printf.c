@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccifuent <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/20 11:52:17 by ccifuent          #+#    #+#             */
+/*   Updated: 2021/07/20 11:52:53 by ccifuent         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
 
 char	*ft_sharp_zero(char *hex, t_flags flags)
 {
+	char	*zero;
+	int		i;
+	int		l;
+
 	if (flags.zero || flags.prec >= 0)
 	{
-		char	*zero;
-		int		i;
-		int		l;
-
 		if (flags.prec > flags.zero)
 			flags.zero = flags.prec;
 		else
@@ -25,7 +37,6 @@ char	*ft_sharp_zero(char *hex, t_flags flags)
 			hex = ft_strjoin(zero, hex);
 			free (zero);
 		}
-
 	}
 	return (hex);
 }
@@ -121,14 +132,9 @@ int	ft_printf(const char *cpy, ...)
 	{
 		if (str[i] == '%')
 		{
-			if (str[i + 1])
-			{
-				length += ft_handle_percent(args, &str[++i]);
-				while (!ft_check_type(str[i]))
-					i++;
-			}
-			else
-				length --;
+			length += ft_handle_percent(args, &str[++i]);
+			while (!ft_check_type(str[i]))
+				i++;
 		}
 		else
 			ft_putchar(str[i]);

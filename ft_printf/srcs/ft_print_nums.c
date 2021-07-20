@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_nums.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccifuent <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/20 11:55:01 by ccifuent          #+#    #+#             */
+/*   Updated: 2021/07/20 11:55:03 by ccifuent         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_printf.h"
 
 t_flags	ft_check_print_num(t_flags flags, char *a)
@@ -30,11 +42,9 @@ t_flags	ft_check_print_num(t_flags flags, char *a)
 t_flags	ft_num_prec(char *arg, t_flags flags)
 {
 	flags.zero = flags.prec;
-	//printf("_%d__%d_", ft_strlen(arg), flags.width);
-	if (!flags.plus && flags.space && flags.space && (flags.width <= ft_strlen(arg) + flags.zero || flags.minus))
+	if (!flags.plus && flags.space && flags.space
+		&& (flags.width <= ft_strlen(arg) + flags.zero || flags.minus))
 	{
-		//flags.zero--;
-		//flags.space = 0;
 		ft_putchar(' ');
 	}
 	flags.width -= (flags.zero - ft_strlen(arg));
@@ -48,7 +58,6 @@ t_flags	ft_num_prec(char *arg, t_flags flags)
 	}
 	if (flags.plus && ft_atoi(arg) >= 0)
 		ft_putchar('+');
-
 	ft_print_zeros(flags, arg);
 	return (flags);
 }

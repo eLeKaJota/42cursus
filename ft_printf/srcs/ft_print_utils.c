@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccifuent <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/20 11:55:12 by ccifuent          #+#    #+#             */
+/*   Updated: 2021/07/20 11:55:14 by ccifuent         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_printf.h"
 
 void	ft_percent_zero(t_flags flags, char *arg)
@@ -70,10 +82,10 @@ t_flags	ft_print_num(char *arg, t_flags flags)
 	else if (!flags.minus)
 		ft_print_width(flags, arg);
 	if ((flags.plus && !flags.zero && ft_atoi(arg) >= 0 )
-	 && (flags.num == 1 && flags.prec < 0))
+		&& (flags.num == 1 && flags.prec < 0))
 		ft_putchar('+');
-	if (!flags.plus && flags.space && flags.num == 1 &&
-	(ft_strlen(arg) >= flags.width || flags.minus) && flags.prec < 0)
+	if (!flags.plus && flags.space && flags.num == 1
+		&& (ft_strlen(arg) >= flags.width || flags.minus) && flags.prec < 0)
 		ft_putchar(' ');
 	ft_putstr(arg);
 	if (flags.minus)

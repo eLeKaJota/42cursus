@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_args.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccifuent <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/20 11:54:35 by ccifuent          #+#    #+#             */
+/*   Updated: 2021/07/20 11:54:53 by ccifuent         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_printf.h"
 
 void	ft_putchar(int c)
@@ -47,7 +59,7 @@ void	ft_print_width(t_flags flags, char *arg)
 		r--;
 	if (flags.num && ft_atoi(arg) >= 0 && flags.plus)
 		r--;
-	if(!flags.plus && flags.minus && flags.space)
+	if (!flags.plus && flags.minus && flags.space)
 		r--;
 	while (++i < r)
 		ft_putchar(' ');
