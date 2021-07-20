@@ -6,7 +6,7 @@
 /*   By: ccifuent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 16:34:16 by ccifuent          #+#    #+#             */
-/*   Updated: 2021/07/15 17:08:51 by                  ###   ########.fr       */
+/*   Updated: 2021/07/17 16:19:36 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_flags
 	int		minus;
 	int		plus;
 	int		sharp;
+	int		space;
 	int		dot;
 	int		num;
 	char	type;

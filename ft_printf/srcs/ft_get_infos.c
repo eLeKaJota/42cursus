@@ -42,6 +42,8 @@ char	ft_check_type(char c)
 	int		i;
 	char	r;
 
+	if (!c)
+		return ('n');
 	flags = ft_strdup("cspdiuxX%");
 	if (!flags)
 		return (0);
@@ -55,6 +57,8 @@ char	ft_check_type(char c)
 			return (r);
 		}
 	}
+	if (ft_isalpha(c))
+		return ('z');
 	free(flags);
 	return (0);
 }

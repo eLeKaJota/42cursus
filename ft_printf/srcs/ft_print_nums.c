@@ -30,6 +30,13 @@ t_flags	ft_check_print_num(t_flags flags, char *a)
 t_flags	ft_num_prec(char *arg, t_flags flags)
 {
 	flags.zero = flags.prec;
+	//printf("_%d__%d_", ft_strlen(arg), flags.width);
+	if (!flags.plus && flags.space && flags.space && (flags.width <= ft_strlen(arg) + flags.zero || flags.minus))
+	{
+		//flags.zero--;
+		//flags.space = 0;
+		ft_putchar(' ');
+	}
 	flags.width -= (flags.zero - ft_strlen(arg));
 	if (!flags.minus)
 		ft_print_width(flags, arg);
@@ -40,9 +47,8 @@ t_flags	ft_num_prec(char *arg, t_flags flags)
 		flags.prec++;
 	}
 	if (flags.plus && ft_atoi(arg) >= 0)
-	{
 		ft_putchar('+');
-	}
+
 	ft_print_zeros(flags, arg);
 	return (flags);
 }
@@ -62,6 +68,12 @@ t_flags	ft_num_zero(char *arg, t_flags flags)
 	{
 		if (!flags.minus)
 			ft_putchar('+');
+	}
+	if (!flags.plus && flags.space)
+	{
+		flags.zero--;
+		flags.space = 0;
+		ft_putchar(' ');
 	}
 	ft_print_zeros(flags, arg);
 	return (flags);
@@ -85,12 +97,17 @@ t_flags	ft_isnum(char *arg, t_flags flags)
 {
 	if (flags.type == 'd' || flags.type == 'i' || flags.type == 'u')
 	{
+		if (ft_atoi(arg) < 0)
+		{
+			flags.plus = 0;
+			flags.space = 0;
+		}
 		flags.num = 1;
 		flags = ft_print_num(arg, flags);
 	}
 	if (flags.type == 'x' || flags.type == 'X')
 	{
-		flags.num = 1;
+		flags.num = 2;
 		flags = ft_print_num(arg, flags);
 	}
 	return (flags);

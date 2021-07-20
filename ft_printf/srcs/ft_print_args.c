@@ -47,6 +47,8 @@ void	ft_print_width(t_flags flags, char *arg)
 		r--;
 	if (flags.num && ft_atoi(arg) >= 0 && flags.plus)
 		r--;
+	if(!flags.plus && flags.minus && flags.space)
+		r--;
 	while (++i < r)
 		ft_putchar(' ');
 }
@@ -62,11 +64,13 @@ int	ft_print_arg(char *arg, char *fl)
 	flags = ft_print_arg_char(flags, arg);
 	flags = ft_isnum(arg, flags);
 	flags = ft_print_arg_str(flags, arg);
-	if (flags.num && flags.plus && ft_atoi(arg) >= 0)
+	if (flags.num == 1 && flags.plus && ft_atoi(arg) >= 0)
+		plus++;
+	if (flags.num == 1 && !flags.plus && flags.space)
 		plus++;
 	if (flags.prec > flags.width && flags.prec > ft_strlen(arg))
 		return (flags.prec - (ft_strlen(fl) + 1) + plus);
-	if (flags.width < ft_strlen(arg))
+	if (flags.width <= ft_strlen(arg))
 		return (ft_strlen(arg) - (ft_strlen(fl) + 1) + plus);
 	else
 		return (flags.width - (ft_strlen(fl) + 1));
