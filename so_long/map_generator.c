@@ -104,11 +104,13 @@ void ft_map_generator(t_map *tmap)
 int main(int argc, char** argv)
 {
 	t_map map;
-	if (strcmp(argv[1], "-h") == 0)
+	if (strcmp(argv[1], "-h") == 0 || argc == 1)
 	{
+	    printf("----------------------------INSTRUCCIONES----------------------------------");
 		printf("Para generar el mapa ejecuta el programa con los siguientes parámetros:\n");
-		printf("./a.out \"filas\" \"columnas\" \"coleccionables\" \"obstaculos\" \"nombre\"\n");
-		printf("Ej: ./a.out 8 22 6 7 mapa1\n");
+		printf("./map_generator \"filas\" \"columnas\" \"coleccionables\" \"obstaculos\" \"nombre\"\n");
+		printf("Ej: ./map_generator 8 22 6 7 mapa1\n");
+		printf("---------------------------------------------------------------------------");
 	}else{
 		map.size_y = atoi(argv[1]);
 		map.size_x = atoi(argv[2]);

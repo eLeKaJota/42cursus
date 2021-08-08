@@ -21,6 +21,8 @@ typedef struct s_vars {
 	int		img_pos_y;
 	int     player_pos_x;
 	int     player_pos_y;
+	int     exit_pos_x;
+	int     exit_pos_y;
 	int		img_width;
 	int		img_height;
 	int     collectables;
@@ -127,6 +129,11 @@ void	ft_map_write(t_vars *vars)
 			}
 			if (buf == 'C')
 				vars->collectables++;
+			if (buf == 'E')
+			{
+			    vars->exit_pos_x = x;
+			    vars->exit_pos_y = y;
+			}
 			x++;
 		}
 		else if (buf == '\n')
@@ -192,7 +199,7 @@ int	ft_key_hook(int keycode, t_vars *vars)
 	    }
 	}
 	printf("[Collectables: %d]", vars->collectables);
-	if (vars->collectables == 0 && vars->player_pos_x == 1 && vars->player_pos_y == 1)
+	if (vars->collectables == 0 && vars->player_pos_x == vars->exit_pos_x && vars->player_pos_y == vars->exit_pos_y)
 	    printf("TA TA TA CHAAAAAAN!!!!!");
 	vars->map[vars->player_pos_y][vars->player_pos_x] = 'P';
     ft_draw_map(vars);
