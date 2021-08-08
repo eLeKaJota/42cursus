@@ -5,11 +5,6 @@ static void	ft_fill_m_u(char *ptr, unsigned int n, int a)
 	unsigned int	k;
 
 	k = n;
-	if (k < 0)
-	{
-		k = k * -1;
-		a++;
-	}
 	ptr[a] = 0;
 	a--;
 	while (k >= 10)
@@ -21,14 +16,11 @@ static void	ft_fill_m_u(char *ptr, unsigned int n, int a)
 	ptr[a] = k + '0';
 }
 
-char	*ft_allocate_u(unsigned int n, int a)
+char	*ft_allocate_u(int a)
 {
 	char	*ptr;
 
-	if (n < 0)
-		ptr = malloc(a + 2);
-	else
-		ptr = malloc(a + 1);
+	ptr = malloc(a + 1);
 	if (!ptr)
 		return (0);
 	return (ptr);
@@ -42,18 +34,14 @@ char	*ft_itoa_u(unsigned int n)
 
 	a = 1;
 	k = n;
-	if (k < 0)
-		k = k * -1;
 	while (k >= 10)
 	{
 		k = k / 10;
 		a++;
 	}
-	ptr = ft_allocate_u(n, a);
+	ptr = ft_allocate_u(n);
 	if (!ptr)
 		return (0);
 	ft_fill_m_u(ptr, n, a);
-	if (n < 0)
-		ptr[0] = '-';
 	return (ptr);
 }
