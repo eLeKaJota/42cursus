@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_flags.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccifuent <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/20 11:53:49 by ccifuent          #+#    #+#             */
+/*   Updated: 2021/07/20 11:53:52 by ccifuent         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_printf.h"
 
 t_flags	ft_init_flags(void)
@@ -10,6 +22,7 @@ t_flags	ft_init_flags(void)
 	flags.minus = 0;
 	flags.plus = 0;
 	flags.sharp = 0;
+	flags.space = 0;
 	flags.dot = 0;
 	flags.num = 0;
 	return (flags);
@@ -36,22 +49,33 @@ int	ft_get_width(char *str)
 	return (res);
 }
 
+t_flags	ft_bonus_flags(char c, t_flags flags)
+{
+	if (c == '+')
+		flags.plus = 1;
+	if (c == ' ')
+		flags.space = 1;
+	if (c == '#')
+		flags.sharp = 1;
+	if (c == '0')
+		flags.zero = 1;
+	if (c == '-')
+		flags.minus = 1;
+	return (flags);
+}
+
 t_flags	ft_handle_flags(char *fl, t_flags flags)
 {
 	int	i;
 
+	i = 0;
+	while (!ft_check_type(fl[i]))
+		i++;
+	flags.type = ft_check_type(fl[i]);
 	i = -1;
-	flags.type = fl[ft_strlen(fl) - 1];
 	while (!ft_check_type(fl[++i]))
 	{
-		if (fl[i] == '+')
-			flags.plus = 1;
-		if (fl[i] == '#')
-			flags.sharp = 1;
-		if (fl[i] == '0')
-			flags.zero = 1;
-		if (fl[i] == '-')
-			flags.minus = 1;
+		flags = ft_bonus_flags(fl[i], flags);
 		while (ft_isdigit(fl[i]) && fl[i] != '0')
 		{
 			if (!flags.width)

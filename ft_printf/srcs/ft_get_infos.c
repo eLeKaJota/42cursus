@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_get_infos.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccifuent <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/20 11:54:02 by ccifuent          #+#    #+#             */
+/*   Updated: 2021/07/20 11:54:07 by ccifuent         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_printf.h"
 
 int	ft_count_hex(uintptr_t n)
@@ -42,6 +54,8 @@ char	ft_check_type(char c)
 	int		i;
 	char	r;
 
+	if (!c)
+		return ('n');
 	flags = ft_strdup("cspdiuxX%");
 	if (!flags)
 		return (0);
@@ -55,6 +69,8 @@ char	ft_check_type(char c)
 			return (r);
 		}
 	}
+	if (ft_isalpha(c))
+		return ('z');
 	free(flags);
 	return (0);
 }
